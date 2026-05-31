@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Life Care - Leading supplier of high-quality sanitary pads, menstrual hygiene products, and feminine care solutions for schools, hospitals, NGOs, and institutions across India.">
+    <meta name="keywords" content="sanitary pads, menstrual hygiene products, feminine hygiene, sanitary napkins, women hygiene products, bulk sanitary pads, institutional sanitary supply, cotton sanitary pads, biodegradable pads, menstrual health awareness">
+    <meta name="author" content="Premium Life Care">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Premium Life Care - Quality Sanitary Pads & Menstrual Hygiene Solutions">
+    <meta property="og:description" content="Affordable, high-quality sanitary pads and feminine hygiene products for institutions, schools, hospitals, and NGOs.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="[premiumlifecare.com](https://premiumlifecare.com)">
+    
+    <title>Premium Life Care | Quality Sanitary Pads & Menstrual Hygiene Products</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-pink: #d4145a;
+            --secondary-pink: #ff6b9d;
+            --light-pink: #fff0f5;
+            --dark-text: #333;
+            --teal: #00a99d;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo-text {
+            font-family: 'Georgia', serif;
+            font-size: 1.8rem;
+            color: var(--primary-pink);
+            font-style: italic;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-pink);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--white) 100%);
+            padding: 150px 5% 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            color: var(--primary-pink);
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #666;
+        }
+        
+        .cta-button {
+            background: var(--primary-pink);
+            color: var(--white);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 20, 90, 0.3);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-pink);
+            margin-bottom: 50px;
+        }
+        
+        /* About Section */
+        #about {
+            background: var(--white);
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+        
+        .feature-card {
+            background: var(--light-pink);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-pink);
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Products Section */
+        #products {
+            background: var(--light-pink);
+        }
+        
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 25px;
+        }
+        
+        .product-info h3 {
+            color: var(--primary-pink);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-specs {
+            list-style: none;
+        }
+        
+        .product-specs li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .product-specs li::before {
+            content: "✓";
+            color: var(--teal);
+            font-weight: bold;
+        }
+        
+        /* Services Section */
+        #services {
+            background: var(--white);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            color: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* Target Institutions */
+        .institutions {
+            background: #f9f9f9;
+            padding: 60px 5%;
+        }
+        
+        .institutions-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .institution-tag {
+            background: var(--white);
+            padding: 15px 25px;
+            border-radius: 25px;
+            border: 2px solid var(--secondary-pink);
+            color: var(--primary-pink);
+            font-weight: 500;
+        }
+        
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            color: var(--white);
+        }
+        
+        #contact .section-title {
+            color: var(--white);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item span {
+            font-size: 1.5rem;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            color: var(--dark-text);
+        }
+        
+        .contact-form h3 {
+            color: var(--primary-pink);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-pink);
+            color: var(--white);
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #b31048;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d2d2d;
+            color: var(--white);
+            padding: 40px 5%;
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <!-- Premium Logo Placeholder -->
+            <svg width="50" height="50" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="#fff0f5" stroke="#d4145a" stroke-width="3"/>
+                <path d="M30 60 Q50 20 70 60" stroke="#d4145a" stroke-width="3" fill="none"/>
+                <circle cx="50" cy="40" r="8" fill="#d4145a"/>
+            </svg>
+            <span class="logo-text">Premium</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Premium Sanitary Pads & Menstrual Hygiene Solutions</h1>
+        <p>Empowering women's health with high-quality, affordable feminine hygiene products. Trusted supplier for schools, hospitals, NGOs, and institutions across India.</p>
+        <a href="#contact" class="cta-button">Get a Quote Today</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Premium Life Care</h2>
+        <div class="about-content">
+            <p><strong>PREMIUM LIFE CARE</strong> is dedicated to advancing women's menstrual health and hygiene by delivering superior-quality sanitary napkins and feminine care products at accessible prices. We specialize in supplying comfortable, hygienic sanitary pads to educational institutions, healthcare facilities, corporate offices, and non-profit organizations.</p>
+            <p>Our commitment extends beyond product supply—we actively support menstrual hygiene awareness programs in both urban and rural communities, ensuring every woman and adolescent girl has access to safe, reliable feminine hygiene products.</p>
+            
+            <h3 style="color: var(--primary-pink); margin: 40px 0 20px;">Our Vision</h3>
+            <p>To revolutionize menstrual health awareness and provide accessible, affordable sanitary hygiene solutions for every woman across India.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Affordable Quality Products</h3>
+                <p>Premium sanitary pads at competitive institutional prices</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📢</div>
+                <h3>Hygiene Awareness Programs</h3>
+                <p>Educational initiatives for menstrual health awareness</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3>Timely Supply Support</h3>
+                <p>Reliable delivery schedules for institutions</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3>Institutional Supply Capability</h3>
+                <p>Bulk orders for large organizations</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Dedicated Customer Support</h3>
+                <p>Responsive assistance for all your needs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Institutions -->
+    <div class="institutions">
+        <h2 class="section-title">We Serve</h2>
+        <div class="institutions-grid">
+            <span class="institution-tag">🏥 Government Hospitals</span>
+            <span class="institution-tag">🏫 Schools & Colleges</span>
+            <span class="institution-tag">🏠 Hostels</span>
+            <span class="institution-tag">💚 NGOs</span>
+            <span class="institution-tag">🏢 Corporate Offices</span>
+            <span class="institution-tag">🏭 Factories & Industries</span>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <section id="products">
+        <h2 class="section-title">Our Premium Sanitary Pad Products</h2>
+        <div class="products-container">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="[i.imgur.com](https://i.imgur.com/product1.jpg)" alt="Premium 4X Free Sanitary Pads - Front View showing cotton soft ultra-thin design with negative ion technology" onerror="this.src='[via.placeholder.com](https://via.placeholder.com/400x350/fff0f5/d4145a?text=Premium+Sanitary+Pads)'">
+                <div class="product-info">
+                    <h3>Premium 4X Free Sanitary Napkins</h3>
+                    <p>Ultra-comfortable menstrual pads with advanced protection technology for daily use.</p>
+                    <ul class="product-specs">
+                        <li>Size: 280mm - Regular/Medium Flow</li>
+                        <li>Anion + Nano Silver + Far Infrared Technology</li>
+                        <li>100% Soft Cotton Non-Woven Top Layer</li>
+                        <li>Ultra-Thin & High Absorbent Design</li>
+                        <li>Negative Ion Strip for Odor Control</li>
+                        <li>Biodegradable & Skin-Friendly Materials</li>
+                        <li>Pack Contains: 6 Sanitary Pads</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="[i.imgur.com](https://i.imgur.com/product2.jpg)" alt="Premium 4X Free Sanitary Pads - 8 Layers of Protection diagram showing cotton non-woven, nano-silver strip, super-absorbent polymer layers" onerror="this.src='[via.placeholder.com](https://via.placeholder.com/400x350/fff0f5/d4145a?text=8+Layer+Protection)'">
+                <div class="product-info">
+                    <h3>8 Layers of Advanced Protection</h3>
+                    <p>Scientific multi-layer design for maximum comfort and leak-proof security.</p>
+                    <ul class="product-specs">
+                        <li>Cotton Smooth Non-Woven Top Sheet</li>
+                        <li>Nano-Silver & Negative Ion Strip</li>
+                        <li>Super-Absorbent Polymer Core (5-10x absorption)</li>
+                        <li>First Air-Laid Layer for Leak Protection</li>
+                        <li>Second Air-Laid Paper Wrap</li>
+                        <li>Breathable Moisture-Trapping Layer</li>
+                        <li>Release Paper & Wrapping Film</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">Our Feminine Hygiene Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>📦 Bulk Sanitary Pad Supply</h3>
+                <p>Wholesale feminine hygiene products for schools, colleges, hospitals, and corporate institutions with flexible quantity options.</p>
+            </div>
+            <div class="service-card">
+                <h3>🎰 Sanitary Napkin Vending Machines</h3>
+                <p>Installation and maintenance of sanitary pad dispensers for restrooms in public facilities and workplaces.</p>
+            </div>
+            <div class="service-card">
+                <h3>📚 Menstrual Hygiene Awareness Programs</h3>
+                <p>Educational workshops and awareness campaigns on period health, menstrual hygiene management, and feminine care.</p>
+            </div>
+            <div class="service-card">
+                <h3>🏛️ Government & Institutional Supply</h3>
+                <p>Authorized supplier for government schemes, public health programs, and institutional feminine hygiene requirements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact Us for Sanitary Pad Supply</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>PREMIUM LIFE CARE</h3>
+                <div class="contact-item">
+                    <span>📍</span>
+                    <div>
+                        <p>Margai Nagar, Kameshwar Galli,</p>
+                        <p>B K Kangali, Belagavi – 590010</p>
+                        <p>Karnataka, India</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <p><a href="tel:+917795452724" style="color: white;">+91 7795452724</a></p>
+                </div>
+                <div class="contact-item">
+                    <span>📧</span>
+                    <p><a href="mailto:Premiumlifecare31@gmail.com" style="color: white;">Premiumlifecare31@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <span>💬</span>
+                    <p>WhatsApp: <a href="[wa.me](https://wa.me/917795452724)" style="color: white;">Click to Chat</a></p>
+                </div>
+            </div>
+            
+            <!-- Enquiry Form -->
+            <div class="contact-form">
+                <h3>Request a Quote / Enquiry</h3>
+                <form id="enquiryForm" onsubmit="submitToWhatsApp(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="organization">Organization / Institution</label>
+                        <input type="text" id="organization" name="organization" placeholder="School, Hospital, NGO, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXX XXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="enquiryType">Enquiry Type</label>
+                        <select id="enquiryType" name="enquiryType">
+                            <option value="">Select an option</option>
+                            <option value="Bulk Sanitary Pad Order">Bulk Sanitary Pad Order</option>
+                            <option value="Vending Machine Supply">Vending Machine Supply</option>
+                            <option value="Institutional Supply">Institutional Supply</option>
+                            <option value="Awareness Program">Menstrual Hygiene Awareness Program</option>
+                            <option value="Government/NGO Supply">Government/NGO Supply</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Estimated Quantity Required</label>
+                        <input type="text" id="quantity" name="quantity" placeholder="e.g., 500 packs/month">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Additional Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us more about your requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Enquiry via WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>PREMIUM LIFE CARE</strong> - Quality Sanitary Pads & Feminine Hygiene Products</p>
+        <p>Serving Schools, Hospitals, NGOs & Institutions Across India</p>
+        <p style="margin-top: 20px; opacity: 0.7;">© 2024 Premium Life Care. All Rights Reserved.</p>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="[wa.me](https://wa.me/917795452724?text=Hello!%20I%20am%20interested%20in%20Premium%20Sanitary%20Pads.%20Please%20share%20more%20details)" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="[w3.org](http://www.w3.org/2000/svg)">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+        
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+        
+        // WhatsApp Form Submission
+        function submitToWhatsApp(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const organization = document.getElementById('organization').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const enquiryType = document.getElementById('enquiryType').value;
+            const quantity = document.getElementById('quantity').value;
+            const message = document.getElementById('message').value;
+            
+            let whatsappMessage = `*New Enquiry from Premium Life Care Website*%0A%0A`;
+            whatsappMessage += `*Name:* ${name}%0A`;
+            if (organization) whatsappMessage += `*Organization:* ${organization}%0A`;
+            whatsappMessage += `*Phone:* ${phone}%0A`;
+            if (email) whatsappMessage += `*Email:* ${email}%0A`;
+            if (enquiryType) whatsappMessage += `*Enquiry Type:* ${enquiryType}%0A`;
+            if (quantity) whatsappMessage += `*Quantity Required:* ${quantity}%0A`;
+            if (message) whatsappMessage += `*Message:* ${message}%0A`;
+            
+            const whatsappURL = `[wa.me](https://wa.me/917795452724?text=${whatsappMessage})`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
