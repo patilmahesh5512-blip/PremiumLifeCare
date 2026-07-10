@@ -20,7 +20,7 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          pg_dump "$DATABASE_URL" -F c -f backup.dump
+          PGSSLMODE=require pg_dump "$DATABASE_URL" -F c -f backup.dump
 
       - name: Upload backup
         uses: actions/upload-artifact@v4
