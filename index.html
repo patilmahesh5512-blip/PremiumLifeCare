@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Life Care | Quality Sanitary Pads</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<nav>
+    <div class="nav-top">
+        <div class="logo" onclick="showPage('home')">
+            <img src="images/logo.jpg" alt="Premium Life Care Logo">
+            <div>
+                <div class="logo-name">Premium</div>
+                <div class="logo-sub">Life Care</div>
+            </div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" onclick="showPage('home')" data-page="home" class="active" data-i18n="nav.home">Home</a></li>
+            <li><a href="#" onclick="showPage('about')" data-page="about" data-i18n="nav.about">About Us</a></li>
+            <li><a href="#" onclick="showPage('products')" data-page="products" data-i18n="nav.products">Products</a></li>
+            <li><a href="#" onclick="showPage('vending')" data-page="vending" data-i18n="nav.vending">Vending Machine</a></li>
+            <li><a href="#" onclick="showPage('services')" data-page="services" data-i18n="nav.services">Services</a></li>
+            <li><a href="#" onclick="showPage('events')" data-page="events" data-i18n="nav.events">Events</a></li>
+            <li><a href="#" onclick="showPage('blog')" data-page="blog" data-i18n="nav.blog">Blog</a></li>
+            <li><a href="#" onclick="showPage('contact')" data-page="contact" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="#" onclick="navGuard('enquiries')" data-page="enquiries" id="navEnquiries" style="display:none;">Enquiries</a></li>
+            <li><a href="#" onclick="showPage('login')" data-page="login" id="navLogin" data-i18n="nav.login">Login</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-btn" onclick="toggleLangMenu()" id="langBtnLabel">
+                    <span class="lang-flag">🇬🇧</span><span class="lang-code">EN</span> ▾
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <div class="lang-option" onclick="setLanguage('en')" data-lang="en"><span class="lang-flag">🇬🇧</span> English</div>
+                    <div class="lang-option" onclick="setLanguage('es')" data-lang="es"><span class="lang-flag">🇪🇸</span> Español</div>
+                    <div class="lang-option" onclick="setLanguage('de')" data-lang="de"><span class="lang-flag">🇩🇪</span> Deutsch</div>
+                    <div class="lang-option" onclick="setLanguage('fr')" data-lang="fr"><span class="lang-flag">🇫🇷</span> Français</div>
+                </div>
+            </div>
+            <div class="user-chip" id="userChip" style="display:none;" onclick="logout()">👤 <span id="userChipName"></span> · Logout</div>
+            <div class="mobile-menu" onclick="toggleNav()">☰</div>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== ADMIN LOGIN ===== -->
+<div class="page" id="page-login">
+    <div class="auth-wrap">
+        <div class="auth-box">
+            <h2>🔐 Admin Login</h2>
+            <p class="auth-sub">Log in to view received enquiries</p>
+            <div class="auth-error" id="authError"></div>
+
+            <div id="loginForm">
+                <div class="fg"><label>Username</label><input type="text" id="li_email" placeholder="admin" autocomplete="username"></div>
+                <div class="fg"><label>Password</label><input type="password" id="li_password" placeholder="Enter admin password" autocomplete="current-password"></div>
+                <button class="submit-btn" onclick="doLogin()">Log In</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== LOCKED PLACEHOLDER (shown instead of gated pages when logged out) ===== -->
+<div class="page" id="page-locked">
+    <div class="locked-msg">
+        <div class="lock-icon">🔒</div>
+        <h2 data-i18n="locked.title">Admin Access Only</h2>
+        <p data-i18n="locked.text">The Enquiries list is restricted to the site admin. Please log in with the admin credentials to view submitted enquiries.</p>
+        <a href="#" class="cta-btn" onclick="showPage('login')" data-i18n="locked.btn">Admin Login</a>
+    </div>
+</div>
+
+<!-- ===== HOME ===== -->
+<div class="page active" id="page-home">
+    <div class="page-hero dark-grad">
+        <h1 data-i18n="home.heroTitle">Welcome to Premium Life Care</h1>
+        <p data-i18n="home.heroSub">Your trusted partner in menstrual health and hygiene, serving schools, hospitals, NGOs, and institutions across India.</p>
+    </div>
+    <div class="hero">
+        <div class="hero-text">
+            <h1 data-i18n="home.mainTitle">Premium Sanitary Pads &amp; Menstrual Hygiene Solutions</h1>
+            <p data-i18n="home.mainSub">Empowering women's health with high-quality, affordable feminine hygiene products. Trusted supplier for schools, hospitals, NGOs, and institutions across India.</p>
+            <a href="#" class="cta-btn" onclick="showPage('contact')" data-i18n="home.cta">Get a Quote Today</a>
+            <div class="stats-row">
+                <div class="stat"><h3>8</h3><p data-i18n="home.stat1">Protection Layers</p></div>
+                <div class="stat"><h3>100%</h3><p data-i18n="home.stat2">Pure Cotton</p></div>
+                <div class="stat"><h3>4X</h3><p data-i18n="home.stat3">Absorption</p></div>
+            </div>
+        </div>
+        <div class="hero-img">
+            <div class="hero-slider" id="heroSlider">
+                <div class="hero-slide active"><img src="images/slide_premium_daily_trial.jpg" alt="Premium 4X Free Trial Pack"></div>
+                <div class="hero-slide"><img src="images/slide_maxx_xxl_heavy.jpg" alt="Premium Maxx Comfort XXL+ Heavy Flow"></div>
+                <div class="hero-slide"><img src="images/slide_premium_xl_30pads.jpg" alt="Premium 4X Free XL 30 Pads"></div>
+                <div class="hero-slide"><img src="images/slide_maxx_15pads.jpg" alt="Premium Maxx Comfort 15 Pads"></div>
+                <div class="hero-slide"><img src="images/slide_maxx_trial_pink.jpg" alt="Premium Maxx Comfort Trial Pack"></div>
+            </div>
+            <div class="hero-slider-dots" id="heroSliderDots"></div>
+        </div>
+    </div>
+    <div class="serve-strip">
+        <h2 data-i18n="home.weServe">We Serve</h2>
+        <div class="ticker-wrap">
+            <div class="ticker-track">
+                <span class="tag" data-i18n="home.tag1">🏥 Government Hospitals</span>
+                <span class="tag" data-i18n="home.tag2">🏫 Schools &amp; Colleges</span>
+                <span class="tag" data-i18n="home.tag3">🏠 Hostels</span>
+                <span class="tag" data-i18n="home.tag4">💚 NGOs</span>
+                <span class="tag" data-i18n="home.tag5">🏢 Corporate Offices</span>
+                <span class="tag" data-i18n="home.tag6">🏭 Factories &amp; Industries</span>
+                <span class="tag" data-i18n="home.tag7">🚉 Public Spaces</span>
+                <span class="tag" data-i18n="home.tag1">🏥 Government Hospitals</span>
+                <span class="tag" data-i18n="home.tag2">🏫 Schools &amp; Colleges</span>
+                <span class="tag" data-i18n="home.tag3">🏠 Hostels</span>
+                <span class="tag" data-i18n="home.tag4">💚 NGOs</span>
+                <span class="tag" data-i18n="home.tag5">🏢 Corporate Offices</span>
+                <span class="tag" data-i18n="home.tag6">🏭 Factories &amp; Industries</span>
+                <span class="tag" data-i18n="home.tag7">🚉 Public Spaces</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<div class="page" id="page-about">
+    <div class="page-hero dark-grad">
+        <h1 data-i18n="about.heroTitle">About Premium Life Care</h1>
+        <p data-i18n="about.heroSub">Dedicated to advancing women's menstrual health by delivering superior-quality sanitary napkins and feminine care products at accessible prices.</p>
+    </div>
+    <div class="about-grid">
+        <div class="about-logo-wrap">
+            <img src="images/logo.jpg" alt="Premium Life Care Logo">
+        </div>
+        <div class="about-body">
+            <h2 data-i18n="about.whoTitle">Who We Are</h2>
+            <p data-i18n="about.p1"><strong>PREMIUM LIFE CARE</strong> is dedicated to advancing women's menstrual health and hygiene by delivering superior-quality sanitary napkins and feminine care products at accessible prices.</p>
+            <p data-i18n="about.p2">We specialize in supplying comfortable, hygienic sanitary pads to educational institutions, healthcare facilities, corporate offices, and non-profit organizations.</p>
+            <p data-i18n="about.p3">Our commitment extends beyond product supply — we actively support menstrual hygiene awareness programs in both urban and rural communities, ensuring every woman has access to safe, reliable feminine hygiene products.</p>
+            <div class="vision-box">
+                <h3 data-i18n="about.visionTitle">🌸 Our Vision</h3>
+                <p data-i18n="about.visionText">To revolutionize menstrual health awareness and provide accessible, affordable sanitary hygiene solutions for every woman across India.</p>
+            </div>
+        </div>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card"><div class="icon">💰</div><h3 data-i18n="about.f1t">Affordable Quality</h3><p data-i18n="about.f1p">Premium sanitary pads at competitive institutional prices</p></div>
+        <div class="feature-card"><div class="icon">📢</div><h3 data-i18n="about.f2t">Hygiene Awareness</h3><p data-i18n="about.f2p">Educational initiatives for menstrual health awareness</p></div>
+        <div class="feature-card"><div class="icon">🚚</div><h3 data-i18n="about.f3t">Timely Supply</h3><p data-i18n="about.f3p">Reliable delivery schedules for institutions</p></div>
+        <div class="feature-card"><div class="icon">🏢</div><h3 data-i18n="about.f4t">Bulk Capability</h3><p data-i18n="about.f4p">Bulk orders for large organizations</p></div>
+        <div class="feature-card"><div class="icon">🤝</div><h3 data-i18n="about.f5t">Customer Support</h3><p data-i18n="about.f5p">Responsive assistance for all your needs</p></div>
+    </div>
+</div>
+
+<!-- ===== PRODUCTS ===== -->
+<div class="page" id="page-products">
+    <div class="page-hero dark-grad">
+        <h1 data-i18n="products.heroTitle">Our Premium Sanitary Pad Products</h1>
+        <p data-i18n="products.heroSub">Advanced protection with natural materials — designed for comfort, confidence, and care.</p>
+    </div>
+    <div class="products-grid">
+        <div class="product-card">
+            <img src="images/product_daily_use.jpg" alt="Premium 4X Free - Daily Use">
+            <div class="product-info">
+                <h3 data-i18n="products.p1title">Premium 4X Free — Daily Use</h3>
+                <p data-i18n="products.p1desc">Ultra-comfortable sanitary pads with advanced technology. 280mm | 6 pads per pack.</p>
+                <ul class="product-specs">
+                    <li data-i18n="products.p1s1">Size: 280mm — Daily Use</li>
+                    <li data-i18n="products.p1s2">Anion + Nano Silver + Far Infrared</li>
+                    <li data-i18n="products.p1s3">100% Soft Cotton Non-Woven Top</li>
+                    <li data-i18n="products.p1s4">Ultra-Thin &amp; High Absorbent</li>
+                    <li data-i18n="products.p1s5">Negative Ion Strip for Odor Control</li>
+                    <li data-i18n="products.p1s6">6 Pads per Pack</li>
+                </ul>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="images/product_8layers.jpg" alt="Premium 4X Free - 8 Layers">
+            <div class="product-info">
+                <h3 data-i18n="products.p2title">8 Layers of Advanced Protection</h3>
+                <p data-i18n="products.p2desc">Scientific multi-layer design for maximum comfort and leak-proof security. 290mm XL.</p>
+                <ul class="product-specs">
+                    <li data-i18n="products.p2s1">Cotton Smooth Non-Woven Top Sheet</li>
+                    <li data-i18n="products.p2s2">Nano-Silver &amp; Negative Ion Strip</li>
+                    <li data-i18n="products.p2s3">Super-Absorbent Polymer (5–10× absorption)</li>
+                    <li data-i18n="products.p2s4">First Air-Laid Layer for Leak Protection</li>
+                    <li data-i18n="products.p2s5">Breathable Moisture-Trapping Layer</li>
+                    <li data-i18n="products.p2s6">Release Paper &amp; Wrapping Film</li>
+                </ul>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-info">
+                <h3 data-i18n="products.p3title">MAXX Free &amp; Queens Range</h3>
+                <p data-i18n="products.p3desc">Extended protection range — XXL+ sizes with 15 pads per pack for overnight &amp; heavy flow.</p>
+                <ul class="product-specs">
+                    <li data-i18n="products.p3s1">Size: 360mm XXL+</li>
+                    <li data-i18n="products.p3s2">15 Pads per Pack</li>
+                    <li data-i18n="products.p3s3">MAXX Free &amp; Queens variants</li>
+                    <li data-i18n="products.p3s4">500ML+ Absorption (Queens)</li>
+                    <li data-i18n="products.p3s5">Bulk packs from 1 to 16 packets</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== VENDING MACHINE PAGE ===== -->
+<div class="page" id="page-vending">
+    <div class="vending-page-hero">
+        <h1 data-i18n="vending.heroTitle">🏧 Sanitary Pad Vending Machine</h1>
+        <p data-i18n="vending.heroSub">Automated, hygienic, and always available — bringing period care to every restroom, school, hospital, and workplace.</p>
+    </div>
+    <div class="vending-main vending-main-novideo">
+        <div class="vending-main-info">
+            <h2 data-i18n="vending.mainTitle">Smart Dispensing for Every Space</h2>
+            <p data-i18n="vending.p1">Our sanitary pad vending machines provide 24/7 access to Premium Life Care products, ensuring women always have access to hygienic feminine care — no matter the time or place.</p>
+            <p data-i18n="vending.p2">Compact, reliable, and easy to maintain, these machines are designed for high-traffic restrooms in institutions, public spaces, and corporate environments across India.</p>
+            <p data-i18n="vending.p3">Available on both <strong>purchase</strong> and <strong>rental/lease</strong> basis. Machines are pre-stocked and serviced by our team.</p>
+            <ul class="vending-features">
+                <li data-i18n="vending.f1">Coin &amp; cashless payment options</li>
+                <li data-i18n="vending.f2">Easy installation &amp; low maintenance</li>
+                <li data-i18n="vending.f3">Compact design for any restroom</li>
+                <li data-i18n="vending.f4">Refillable with Premium 4X Free pads</li>
+                <li data-i18n="vending.f5">Ideal for institutions &amp; public spaces</li>
+                <li data-i18n="vending.f6">Available on rental or purchase basis</li>
+            </ul>
+            <a href="#" class="cta-btn cta-btn-compact" onclick="showPage('contact')" style="margin-top:10px;display:inline-block;" data-i18n="vending.cta">Enquire Now</a>
+        </div>
+    </div>
+    <div class="vending-cards">
+        <div class="vending-card">
+            <div class="vc-icon">🏫</div>
+            <h3 data-i18n="vending.c1t">Schools &amp; Colleges</h3>
+            <p data-i18n="vending.c1p">Ensure adolescent girls never miss school due to period emergencies. Discreet, accessible placement in girls' washrooms.</p>
+        </div>
+        <div class="vending-card">
+            <div class="vc-icon">🏥</div>
+            <h3 data-i18n="vending.c2t">Hospitals &amp; Clinics</h3>
+            <p data-i18n="vending.c2p">Patient-friendly dispensing in wards and restrooms. Supports dignity and hygiene for patients, staff, and visitors.</p>
+        </div>
+        <div class="vending-card">
+            <div class="vc-icon">🏢</div>
+            <h3 data-i18n="vending.c3t">Corporate Offices</h3>
+            <p data-i18n="vending.c3p">A thoughtful workplace benefit for female employees. Boosts morale and reduces unplanned absences.</p>
+        </div>
+        <div class="vending-card">
+            <div class="vc-icon">🏭</div>
+            <h3 data-i18n="vending.c4t">Factories &amp; Industries</h3>
+            <p data-i18n="vending.c4p">Ensure hygiene access for women on the shop floor with robust, vandal-resistant machines for industrial environments.</p>
+        </div>
+        <div class="vending-card">
+            <div class="vc-icon">🚉</div>
+            <h3 data-i18n="vending.c5t">Public Spaces</h3>
+            <p data-i18n="vending.c5p">Malls, bus stations, railway stations, and airports — making period care universally accessible across Karnataka.</p>
+        </div>
+        <div class="vending-card">
+            <div class="vc-icon">💳</div>
+            <h3 data-i18n="vending.c6t">Coin &amp; Cashless Payment</h3>
+            <p data-i18n="vending.c6p">Supports coin-based and digital payment options for maximum convenience and ease of use.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<div class="page" id="page-services">
+    <div class="page-hero dark-grad">
+        <h1 data-i18n="services.heroTitle">Our Services</h1>
+        <p data-i18n="services.heroSub">Comprehensive feminine hygiene solutions for institutions, corporates, and communities.</p>
+    </div>
+    <div class="services-scroll-wrap">
+        <div class="services-track">
+            <div class="service-card"><div class="sicon">📦</div><h3 data-i18n="services.s1t">Bulk Sanitary Pad Supply</h3><p data-i18n="services.s1p">Wholesale feminine hygiene products for schools, colleges, hospitals, and corporate institutions with flexible quantity options.</p></div>
+            <div class="service-card"><div class="sicon">🏧</div><h3 data-i18n="services.s2t">Vending Machine Installation</h3><p data-i18n="services.s2p">Supply, installation, and maintenance of sanitary pad vending machines for restrooms in public facilities and workplaces.</p></div>
+            <div class="service-card"><div class="sicon">📚</div><h3 data-i18n="services.s3t">Menstrual Hygiene Awareness</h3><p data-i18n="services.s3p">Educational workshops and awareness campaigns on period health, menstrual hygiene management, and feminine care.</p></div>
+            <div class="service-card"><div class="sicon">🏛️</div><h3 data-i18n="services.s4t">Government &amp; Institutional Supply</h3><p data-i18n="services.s4p">Authorized supplier for government schemes, public health programs, and institutional feminine hygiene requirements.</p></div>
+            <div class="service-card"><div class="sicon">🚚</div><h3 data-i18n="services.s5t">Doorstep Delivery</h3><p data-i18n="services.s5p">Reliable, timely delivery to institutions across Karnataka and beyond. Flexible scheduling to meet your requirements.</p></div>
+            <div class="service-card"><div class="sicon">💬</div><h3 data-i18n="services.s6t">Dedicated Customer Support</h3><p data-i18n="services.s6p">Our responsive team is available via WhatsApp, phone, and email to assist with orders, queries, and after-sales support.</p></div>
+            <!-- Duplicate set for seamless loop -->
+            <div class="service-card"><div class="sicon">📦</div><h3 data-i18n="services.s1t">Bulk Sanitary Pad Supply</h3><p data-i18n="services.s1p">Wholesale feminine hygiene products for schools, colleges, hospitals, and corporate institutions with flexible quantity options.</p></div>
+            <div class="service-card"><div class="sicon">🏧</div><h3 data-i18n="services.s2t">Vending Machine Installation</h3><p data-i18n="services.s2p">Supply, installation, and maintenance of sanitary pad vending machines for restrooms in public facilities and workplaces.</p></div>
+            <div class="service-card"><div class="sicon">📚</div><h3 data-i18n="services.s3t">Menstrual Hygiene Awareness</h3><p data-i18n="services.s3p">Educational workshops and awareness campaigns on period health, menstrual hygiene management, and feminine care.</p></div>
+            <div class="service-card"><div class="sicon">🏛️</div><h3 data-i18n="services.s4t">Government &amp; Institutional Supply</h3><p data-i18n="services.s4p">Authorized supplier for government schemes, public health programs, and institutional feminine hygiene requirements.</p></div>
+            <div class="service-card"><div class="sicon">🚚</div><h3 data-i18n="services.s5t">Doorstep Delivery</h3><p data-i18n="services.s5p">Reliable, timely delivery to institutions across Karnataka and beyond. Flexible scheduling to meet your requirements.</p></div>
+            <div class="service-card"><div class="sicon">💬</div><h3 data-i18n="services.s6t">Dedicated Customer Support</h3><p data-i18n="services.s6p">Our responsive team is available via WhatsApp, phone, and email to assist with orders, queries, and after-sales support.</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== EVENTS ===== -->
+<div class="page" id="page-events">
+    <div class="page-hero dark-grad">
+        <h1 data-i18n="events.heroTitle">Events</h1>
+        <p data-i18n="events.heroSub">Menstrual hygiene awareness drives, health camps, and community outreach programs we've organized or taken part in.</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="icon">🏫</div>
+            <h3 data-i18n="events.e1t">School Awareness Drives</h3>
+            <p data-i18n="events.e1p">Interactive sessions with adolescent girls on menstrual hygiene management, myth-busting, and safe practices.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🩺</div>
+            <h3 data-i18n="events.e2t">Free Health Camps</h3>
+            <p data-i18n="events.e2p">Community health camps in partnership with local clinics, offering guidance on feminine hygiene and wellness.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🎗️</div>
+            <h3 data-i18n="events.e3t">NGO Collaborations</h3>
+            <p data-i18n="events.e3p">Joint initiatives with NGOs to distribute sanitary pads and educational material in underserved communities.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🏢</div>
+            <h3 data-i18n="events.e4t">Corporate Wellness Sessions</h3>
+            <p data-i18n="events.e4p">Workplace talks and product demos helping companies support their female employees' health needs.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📅</div>
+            <h3 data-i18n="events.e5t">Upcoming Events</h3>
+            <p data-i18n="events.e5p">Stay tuned — new awareness programs and community drives are being planned. Contact us to host one at your institution.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ===== BLOG ===== -->
+<div class="page" id="page-blog">
+    <div class="page-hero dark-grad">
+        <h1 data-i18n="blog.heroTitle">Blog</h1>
+        <p data-i18n="blog.heroSub">Articles and insights on menstrual health, hygiene best practices, and product education.</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="icon">🩸</div>
+            <h3 data-i18n="blog.b1t">Understanding Menstrual Hygiene</h3>
+            <p data-i18n="blog.b1p">A beginner's guide to maintaining proper hygiene during periods, and why the right sanitary products matter.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🌿</div>
+            <h3 data-i18n="blog.b2t">Why Choose Cotton Sanitary Pads</h3>
+            <p data-i18n="blog.b2p">Exploring the benefits of soft cotton non-woven top sheets over synthetic petrochemical alternatives.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🏧</div>
+            <h3 data-i18n="blog.b3t">The Rise of Vending Machines</h3>
+            <p data-i18n="blog.b3p">How automated dispensers are making feminine hygiene products more accessible in schools and workplaces.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">💡</div>
+            <h3 data-i18n="blog.b4t">Breaking the Stigma</h3>
+            <p data-i18n="blog.b4p">Why open conversations about periods matter, and how institutions can create more supportive environments.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">✍️</div>
+            <h3 data-i18n="blog.b5t">More Articles Coming Soon</h3>
+            <p data-i18n="blog.b5p">We're building out our blog with more health tips and product guides. Check back soon for new posts.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div class="page" id="page-contact">
+    <div class="page-hero dark-grad">
+        <h1 data-i18n="contact.heroTitle">Contact Us</h1>
+        <p data-i18n="contact.heroSub">Get in touch for bulk orders, vending machine enquiries, or partnerships.</p>
+    </div>
+    <div class="contact-container">
+        <div class="contact-info-box">
+            <h2>PREMIUM LIFE CARE</h2>
+            <div class="map-embed-wrap">
+                <iframe
+                    src="https://maps.google.com/maps?q=Margai%20Nagar%2C%20Kameshwar%20Galli%2C%20B%20K%20Kangali%2C%20Belagavi%20590010%2C%20Karnataka%2C%20India&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="citem"><span class="ci">📍</span><div><p>Margai Nagar, Kameshwar Galli,</p><p>B K Kangali, Belagavi – 590010</p><p>Karnataka, India</p></div></div>
+            <div class="citem"><span class="ci">📞</span><p><a href="tel:+917795452724">+91 7795452724</a></p></div>
+            <div class="citem"><span class="ci">📧</span><p><a href="mailto:Premiumlifecare31@gmail.com">Premiumlifecare31@gmail.com</a></p></div>
+            <div class="citem"><span class="ci">💬</span><p><a href="https://wa.me/917795452724" data-i18n="contact.waLink">WhatsApp: Click to Chat</a></p></div>
+        </div>
+        <div class="contact-form">
+            <h2 data-i18n="contact.formTitle">Request a Quote / Enquiry</h2>
+            <div class="fg"><label data-i18n="contact.lblName">Full Name *</label><input type="text" id="c_name" placeholder="Enter your name" data-i18n-ph="contact.phName"></div>
+            <div class="fg"><label data-i18n="contact.lblOrg">Organization / Institution</label><input type="text" id="c_org" placeholder="School, Hospital, NGO, etc." data-i18n-ph="contact.phOrg"></div>
+            <div class="fg"><label data-i18n="contact.lblPhone">Phone Number *</label><input type="tel" id="c_phone" placeholder="+91 XXXXX XXXXX"></div>
+            <div class="fg"><label data-i18n="contact.lblEmail">Email Address</label><input type="email" id="c_email" placeholder="your@email.com"></div>
+            <div class="fg"><label data-i18n="contact.lblType">Enquiry Type</label>
+                <select id="c_type">
+                    <option value="" data-i18n="contact.optSelect">Select an option</option>
+                    <option>XL (290mm) 6 Pads</option>
+                    <option>XL (290mm) 15 Pads</option>
+                    <option>XL (290mm) 30 Pads</option>
+                    <option>XXL+ (360mm) 6 Pads</option>
+                    <option>XXL+ (360mm) 15 Pads</option>
+                    <option>XXL+ (360mm) 30 Pads</option>
+                    <option>UPI Based Vending Machine 25 Capacity</option>
+                    <option>UPI Based Vending Machine 80 Capacity</option>
+                </select>
+            </div>
+            <div class="fg"><label data-i18n="contact.lblQty">Estimated Quantity</label><input type="text" id="c_qty" placeholder="e.g. 500 packs/month or 2 vending machines" data-i18n-ph="contact.phQty"></div>
+            <div class="fg"><label data-i18n="contact.lblMsg">Message</label><textarea id="c_msg" placeholder="Tell us more about your requirements..." data-i18n-ph="contact.phMsg"></textarea></div>
+            <button class="submit-btn" onclick="sendWA()" data-i18n="contact.submitBtn">Send Enquiry via WhatsApp 💬</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== ADMIN DASHBOARD (Product Master / Enquiries / Quotes) ===== -->
+<div class="page" id="page-enquiries">
+    <div class="page-hero dark-grad">
+        <h1>Admin Dashboard</h1>
+        <p>Manage product pricing, view enquiries, and track quotes sent.</p>
+    </div>
+
+    <div class="admin-tabs-bar">
+        <button class="admin-tab-btn active" id="atBtnProducts" onclick="switchAdminTab('products')">🏷️ Product Master</button>
+        <button class="admin-tab-btn" id="atBtnEnquiries" onclick="switchAdminTab('enq')">📋 Enquiries Received</button>
+        <button class="admin-tab-btn" id="atBtnPending" onclick="switchAdminTab('pending')">⏳ Pending Enquiries</button>
+        <button class="admin-tab-btn" id="atBtnQuotes" onclick="switchAdminTab('quotes')">📄 Quotes Sent</button>
+    </div>
+
+    <div class="backup-bar">
+        <button class="backup-btn" onclick="downloadFullBackup()">⬇️ Download Backup (Enquiries + Products + Quotes)</button>
+        <span class="backup-hint">Save this file to Google Drive, email, or your computer as a safety copy of your data.</span>
+    </div>
+
+    <!-- TAB 1: PRODUCT MASTER -->
+    <div class="admin-tab-content active" id="atProducts">
+        <div class="pm-section" id="pmContainer"><!-- populated by JS --></div>
+        <div class="pm-saved-msg" id="pmSavedMsg">✓ Prices saved successfully.</div>
+        <div class="pm-save-row">
+            <button class="pm-save-btn" onclick="savePrices()">Save All Prices</button>
+        </div>
+    </div>
+
+    <!-- TAB 2: ENQUIRIES RECEIVED (full log, read-only) -->
+    <div class="admin-tab-content" id="atEnq">
+        <div class="enquiries-toolbar">
+            <span class="count-badge" id="enqCount">0 Enquiries</span>
+        </div>
+        <div class="enquiries-list" id="enquiriesList"><!-- populated by JS --></div>
+    </div>
+
+    <!-- TAB 3: PENDING ENQUIRIES (not yet quoted, actionable) -->
+    <div class="admin-tab-content" id="atPending">
+        <div class="enquiries-toolbar">
+            <span class="count-badge" id="pendingCount">0 Pending</span>
+            <div class="toolbar-actions">
+                <button class="gen-quote-bulk-btn" id="bulkQuoteBtn" onclick="openQuoteModal(getSelectedEnquiryIds())" disabled>Generate Quote for Selected</button>
+            </div>
+        </div>
+        <div class="enquiries-list" id="pendingList"><!-- populated by JS --></div>
+    </div>
+
+    <!-- TAB 4: QUOTES SENT -->
+    <div class="admin-tab-content" id="atQuotes">
+        <div class="enquiries-toolbar">
+            <span class="count-badge" id="quoteCount">0 Quotes</span>
+        </div>
+        <div class="enquiries-list" id="quotesList"><!-- populated by JS --></div>
+    </div>
+</div>
+
+<!-- QUOTE GENERATION MODAL -->
+<div class="modal-overlay" id="quoteModal">
+    <div class="modal-box">
+        <h3>Generate Quote</h3>
+        <div class="fg">
+            <label>Product</label>
+            <select id="qm_product" onchange="updateQuotePreview()">
+                <!-- populated by JS -->
+            </select>
+        </div>
+        <div class="fg">
+            <label>Quantity (Packets)</label>
+            <input type="number" id="qm_qty" min="1" value="1" oninput="updateQuotePreview()">
+        </div>
+        <div class="fg">
+            <label>Send Quote Via</label>
+            <select id="qm_delivery">
+                <option value="whatsapp">WhatsApp</option>
+                <option value="email">Email</option>
+            </select>
+        </div>
+        <div class="quote-preview-box" id="qm_preview"></div>
+        <div class="modal-actions">
+            <button class="modal-cancel-btn" onclick="closeQuoteModal()">Cancel</button>
+            <button class="modal-confirm-btn" onclick="confirmGenerateQuote()">Generate &amp; Send Quote</button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p><strong>PREMIUM LIFE CARE</strong> — <span data-i18n="footer.tagline">Quality Sanitary Pads &amp; Feminine Hygiene Products</span></p>
+    <p data-i18n="footer.serving">Serving Schools, Hospitals, NGOs &amp; Institutions Across India</p>
+    <p style="margin-top:14px;opacity:0.5;">© 2026 Premium Life Care. <span data-i18n="footer.rights">All Rights Reserved.</span></p>
+</footer>
+
+<!-- Collapsible Social Panel (visible on every page) -->
+<div class="social-panel" id="socialPanel">
+    <button class="social-toggle" onclick="toggleSocialPanel()" id="socialToggleBtn" aria-label="Show social links">
+        <span id="socialToggleArrow">→</span>
+    </button>
+    <div class="social-links" id="socialLinks">
+        <a href="https://wa.me/917795452724?text=Hello!%20I%20am%20interested%20in%20Premium%20Sanitary%20Pads." class="social-item social-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/premiumlifecare31?igsh=MWZiOGM4eTUxc3RjZw==" class="social-item social-instagram" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
